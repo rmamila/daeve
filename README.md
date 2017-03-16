@@ -30,19 +30,22 @@ Starting database service and queue service
 
 Test
 ----
+Run integration tests (UserActionSuggestionsControllerIT, UserNavigationDataControllerIT)
+
+or test with curl
 
 Run DaeveApplication
 
 - Get (test on browser)
 
-http://localhost:8080/api/suggestions?username=chaminda
+http://localhost:8080/api/suggestions?username=user@user.com
 
 - Post
 
 copy below content in file /tmp/navigation_log_request.txt
 
 {
-	“username” : "Chaminda",
+	“username” : "user@user.com",
 	“urlPattern” : “/pexa_web/login.html”,
 	“subscriberType” : “sponsermanager”,
 	“subscriberId” : “1234”,
