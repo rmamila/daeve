@@ -26,20 +26,6 @@ public class Runner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        UserNavigationData userNavigationData = new UserNavigationData();
-        userNavigationData.setSessionId("Blah");
-        userNavigationData.setSubscriberType("test");
-        userNavigationData.setSubscriberType("Principle");
-        userNavigationData.setUsername("chaminda");
-        userNavigationService.save(userNavigationData);
-
-        Suggestion suggestion = new Suggestion();
-        suggestion.setUsername("chaminda");
-        suggestion.setSubscriberType("REp");
-        userActionSuggestionsService.saveUserSuggestion(suggestion);
-
-        System.out.println("################ " + userNavigationService.getUserNavigationBy("chaminda"));
-        System.out.println("$$$$$$$$$$$$$$$$$$$$$ " + userActionSuggestionsService.getSuggestionsFor("chaminda"));
 
     }
 

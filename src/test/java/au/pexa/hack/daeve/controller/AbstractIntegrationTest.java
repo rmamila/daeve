@@ -12,11 +12,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
+
 
 @RunWith(SpringRunner.class)
-@SpringBootTest("server.port:0")
-@WebAppConfiguration
-
+@SpringBootTest(webEnvironment = RANDOM_PORT)
 @ActiveProfiles("ci")
 public abstract class AbstractIntegrationTest {
 
@@ -35,7 +35,6 @@ public abstract class AbstractIntegrationTest {
         doAfterEachTest();
 
     }
-
 
 
     protected void doBeforeEachTest() {

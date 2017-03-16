@@ -1,8 +1,15 @@
 package au.pexa.hack.daeve.model;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDateTime;
 
 @Document
 public class UserNavigationData {
@@ -21,6 +28,10 @@ public class UserNavigationData {
     private String workspaceId;
 
     private String sessionId;
+
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime timestamp;
 
     public String getUsername() {
         return username;
@@ -78,11 +89,29 @@ public class UserNavigationData {
         this.id = id;
     }
 
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
     @Override
     public String toString() {
-        return String.format(
-                "UserNavigationData[id=%s, username='%s', urlPattern='%s',subscriberType=%s," +
-                        " subscriberId='%s', workspaceId='%s' , sessionId='%s']",
-                id, username, urlPattern, subscriberType, subscriberId, workspaceId, sessionId);
+        return "UserNavigationData{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", urlPattern='" + urlPattern + '\'' +
+                ", subscriberType='" + subscriberType + '\'' +
+                ", subscriberId='" + subscriberId + '\'' +
+                ", workspaceId='" + workspaceId + '\'' +
+                ", sessionId='" + sessionId + '\'' +
+                ", timestamp=" + timestamp +
+                '}';
     }
+
+
+
 }
