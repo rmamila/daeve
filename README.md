@@ -21,6 +21,14 @@ Starting database service and queue service
 
 - run command "mongod" to start the database service
     mongod
+    
+- Open MongoDB Shell
+
+    Start a terminal for your mongo shell
+
+    Run the command (make sure you put the name of the database)
+  
+    mongo --shell
 
 - Goto below folder and Start queue service
 
