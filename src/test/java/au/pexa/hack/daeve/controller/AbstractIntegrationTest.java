@@ -16,7 +16,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = RANDOM_PORT)
+@SpringBootTest(classes=DaeveApplication.class ,webEnvironment = RANDOM_PORT)
 @ActiveProfiles("ci")
 public abstract class AbstractIntegrationTest {
 

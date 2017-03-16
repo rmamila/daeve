@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import static com.jayway.restassured.RestAssured.given;
 
-public class UserActionSuggestionsControllerTest  extends AbstractIntegrationTest{
+public class UserActionSuggestionsControllerIT extends AbstractIntegrationTest{
 
     @Test
     public void shouldGetUserActionSuggestionForGivenUsername(){
