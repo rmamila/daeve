@@ -5,6 +5,8 @@ import au.pexa.hack.daeve.repositories.UserNavigationDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
+
 @Component
 public class UserNavigationService {
 
@@ -12,10 +14,11 @@ public class UserNavigationService {
     private UserNavigationDataRepository userNavigationDataRepository;
 
     public String save(UserNavigationData userNavigationData){
+        return userNavigationDataRepository.save(userNavigationData).getId();
+    }
 
-        userNavigationData = userNavigationDataRepository.save(userNavigationData);
-        System.out.println("########################## "   + userNavigationData);
-        return userNavigationData.getId();
+    public Collection<UserNavigationData> getUserNavigationBy(final String username){
+        return userNavigationDataRepository.findByUsername(username);
     }
 
 }

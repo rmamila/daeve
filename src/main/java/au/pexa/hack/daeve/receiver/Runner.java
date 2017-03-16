@@ -3,31 +3,44 @@ package au.pexa.hack.daeve.receiver;
 import java.util.concurrent.TimeUnit;
 
 import au.pexa.hack.daeve.DaeveApplication;
+import au.pexa.hack.daeve.model.Suggestion;
+import au.pexa.hack.daeve.model.UserNavigationData;
+import au.pexa.hack.daeve.service.UserActionSuggestionsService;
+import au.pexa.hack.daeve.service.UserNavigationService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Runner implements CommandLineRunner {
 
-    private final RabbitTemplate rabbitTemplate;
-    private final Receiver receiver;
-    private final ConfigurableApplicationContext context;
+    @Autowired
+    private UserActionSuggestionsService userActionSuggestionsService;
 
-    public Runner(Receiver receiver, RabbitTemplate rabbitTemplate,
-                  ConfigurableApplicationContext context) {
-        this.receiver = receiver;
-        this.rabbitTemplate = rabbitTemplate;
-        this.context = context;
-    }
+    @Autowired
+    private UserNavigationService userNavigationService;
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Sending message...");
-        rabbitTemplate.convertAndSend(DaeveApplication.queueName, "Hello from RabbitMQ!");
-        receiver.getLatch().await(10000, TimeUnit.MILLISECONDS);
-        context.close();
+
+        UserNavigationData userNavigationData = new UserNavigationData();
+        userNavigationData.setSessionId("Blah");
+        userNavigationData.setSubscriberType("test");
+        userNavigationData.setSubscriberType("Principle");
+        userNavigationData.setUsername("chaminda");
+        userNavigationService.save(userNavigationData);
+
+        Suggestion suggestion = new Suggestion();
+        suggestion.setUsername("chaminda");
+        suggestion.setSubscriberType("REp");
+        userActionSuggestionsService.saveUserSuggestion(suggestion);
+
+        System.out.println("################ " + userNavigationService.getUserNavigationBy("chaminda"));
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$ " + userActionSuggestionsService.getSuggestionsFor("chaminda"));
+
     }
 
 }

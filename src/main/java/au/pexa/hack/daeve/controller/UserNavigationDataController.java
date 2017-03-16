@@ -3,9 +3,8 @@ package au.pexa.hack.daeve.controller;
 import au.pexa.hack.daeve.model.UserNavigationData;
 import au.pexa.hack.daeve.service.UserNavigationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/log-navigation-data")
@@ -16,7 +15,8 @@ public class UserNavigationDataController {
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public void logNavigationData(UserNavigationData userNavigationData){
+    @ResponseStatus( HttpStatus.CREATED)
+    public void logNavigationData(@RequestBody UserNavigationData userNavigationData){
         userNavigationService.save(userNavigationData);
 
     }
