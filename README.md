@@ -9,7 +9,7 @@ Software / Libraries installation
 
 - Create a directory for storing data
 
-    mkdir -t /data/db
+   sudo mkdir -p /data/db
 
     sudo chmod 777 /data/db
 
