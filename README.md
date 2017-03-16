@@ -47,13 +47,6 @@ http://localhost:8080/api/suggestions?username=user@user.com
 
 copy below content in file /tmp/navigation_log_request.txt
 
-{
-	“username” : "user@user.com",
-	“urlPattern” : “/pexa_web/login.html”,
-	“subscriberType” : “sponsermanager”,
-	“subscriberId” : “1234”,
-	“workspaceId” : “134/4567”,
-	“sessionId” : “123213213”
-}
+{"username" : "Amila", "urlPattern" : "/pexa_web/login.html", "subscriberType" : "sponsermanager", "subscriberId" : "1233", "workspaceId" : "133/1567", "sessionId" : "12321322"}
 
 curl -X POST -d `cat /tmp/navigation_log_request.txt` http://localhost:8080/api/log-navigation-data?UserNavigationData --header 'Content-Type: application/json' --header 'Accept: application/json'
