@@ -30,9 +30,12 @@ Starting database service and queue service
 
 Test
 ----
-Run integration tests (UserActionSuggestionsControllerIT, UserNavigationDataControllerIT)
+Run integration tests 
+	UserActionSuggestionsControllerIT and  UserNavigationDataControllerIT in your IDE 
+Or 	
+	mvn verify
 
-or test with curl
+Or 	Test with curl
 
 Run DaeveApplication
 
