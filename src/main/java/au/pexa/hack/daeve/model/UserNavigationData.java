@@ -31,8 +31,6 @@ public class UserNavigationData {
 
     private String sessionId;
 
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime timestamp;
 
     public String getUsername() {
@@ -104,6 +102,10 @@ public class UserNavigationData {
         this.timestamp = timestamp;
     }
 
+    public UserNavigationData() {
+        this.timestamp = LocalDateTime.now();
+    }
+
     @Override
     public String toString() {
         return "UserNavigationData{" +
@@ -118,7 +120,4 @@ public class UserNavigationData {
                 ", timestamp=" + timestamp +
                 '}';
     }
-
-
-
 }

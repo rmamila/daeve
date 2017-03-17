@@ -3,6 +3,9 @@ package au.pexa.hack.daeve.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+import java.util.Map;
+
 @Document
 public class Suggestion {
 
@@ -11,17 +14,19 @@ public class Suggestion {
 
     private String username;
 
-    private String pattern;
+    private Map<String, Integer> goal;
 
-    private String ratings;
+    private String lastAccessedPage;
 
-     private String lastAccessedPage;
-
-     private String lastAccessedSystem;
+    private String lastAccessedSystem;
 
      private String subscriberId;
 
      private String subscriberType;
+
+     private String workspaceReference;
+
+     private boolean isNewUser;
 
     public String getId() {
         return id;
@@ -39,20 +44,12 @@ public class Suggestion {
         this.username = username;
     }
 
-    public String getPattern() {
-        return pattern;
+    public Map<String, Integer> getGoal() {
+        return goal;
     }
 
-    public void setPattern(String pattern) {
-        this.pattern = pattern;
-    }
-
-    public String getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(String ratings) {
-        this.ratings = ratings;
+    public void setGoal(Map<String, Integer> goal) {
+        this.goal = goal;
     }
 
     public String getLastAccessedPage() {
@@ -87,17 +84,34 @@ public class Suggestion {
         this.subscriberType = subscriberType;
     }
 
+    public String getWorkspaceReference() {
+        return workspaceReference;
+    }
+
+    public void setWorkspaceReference(String workspaceReference) {
+        this.workspaceReference = workspaceReference;
+    }
+
+    public boolean isNewUser() {
+        return isNewUser;
+    }
+
+    public void setNewUser(boolean newUser) {
+        isNewUser = newUser;
+    }
+
     @Override
     public String toString() {
         return "Suggestion{" +
                 "id='" + id + '\'' +
                 ", username='" + username + '\'' +
-                ", pattern='" + pattern + '\'' +
-                ", ratings='" + ratings + '\'' +
+                ", goal=" + goal +
                 ", lastAccessedPage='" + lastAccessedPage + '\'' +
                 ", lastAccessedSystem='" + lastAccessedSystem + '\'' +
                 ", subscriberId='" + subscriberId + '\'' +
                 ", subscriberType='" + subscriberType + '\'' +
+                ", workspaceReference='" + workspaceReference + '\'' +
+                ", isNewUser=" + isNewUser +
                 '}';
     }
 }

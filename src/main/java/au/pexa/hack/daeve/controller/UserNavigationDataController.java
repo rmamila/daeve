@@ -22,7 +22,6 @@ public class UserNavigationDataController {
     @ResponseStatus( HttpStatus.CREATED)
     public void logNavigationData(@RequestBody UserNavigationData userNavigationData){
         userNavigationService.save(userNavigationData);
-
     }
 
 

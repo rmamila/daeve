@@ -17,10 +17,7 @@ public class UserActionSuggestionsService {
     }
 
     public Suggestion getSuggestionsFor(final String username) {
-        // TODO implement this
-        Suggestion suggestion = new Suggestion();
-        suggestion.setUsername("Chaminda");
-        return suggestion;
+        return userActionSuggestionsRepository.findByUsername(username);
     }
 
 }
