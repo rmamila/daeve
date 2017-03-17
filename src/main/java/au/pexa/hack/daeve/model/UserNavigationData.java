@@ -31,6 +31,8 @@ public class UserNavigationData {
 
     private String sessionId;
 
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime timestamp;
 
     public String getUsername() {

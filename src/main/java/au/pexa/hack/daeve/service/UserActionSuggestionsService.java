@@ -27,7 +27,7 @@ public class UserActionSuggestionsService {
 
     public Suggestion getSuggestionsFor(final String username) {
         Collection<UserNavigationData> userNavigationData = userNavigationService.getUserNavigationBy(username);
-        Collections.sort(userNavigationData, (navDataOne, navDataTwo) -> navDataOne.getTimestamp().compareTo(navDataTwo.getTimestamp()));
+//        Collections.sort(userNavigationData, (navDataOne, navDataTwo) -> navDataOne.getTimestamp().compareTo(navDataTwo.getTimestamp()));
 
 
         return userActionSuggestionsRepository.findByUsername(username);
