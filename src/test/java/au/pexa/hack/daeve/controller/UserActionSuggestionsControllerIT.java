@@ -59,8 +59,6 @@ public class UserActionSuggestionsControllerIT extends AbstractIntegrationTest{
         suggestion.setUsername(username);
         suggestion.setSubscriberType("Representative");
         suggestion.setLastAccessedPage("http://localhost/blah");
-        suggestion.setPattern("http://localhost/somepage");
-        suggestion.setRatings("some rating");
         suggestion.setSubscriberId("208");
         return suggestion;
     }
