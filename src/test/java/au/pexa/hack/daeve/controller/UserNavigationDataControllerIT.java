@@ -35,6 +35,7 @@ public class UserNavigationDataControllerIT extends AbstractIntegrationTest{
         userNavigationData.setSubscriberType("Representative");
         userNavigationData.setUsername("user@user.com");
         userNavigationData.setUrlPattern("http//localhost:8080/test/data");
+        userNavigationData.setGoal("settlement");
         userNavigationData.setWorkspaceId("PEX12345");
         userNavigationData.setTimestamp(LocalDateTime.now());
         return userNavigationData;

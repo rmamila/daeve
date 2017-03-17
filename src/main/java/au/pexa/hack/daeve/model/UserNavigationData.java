@@ -21,6 +21,8 @@ public class UserNavigationData {
 
     private String urlPattern;
 
+    private String goal;
+
     private String subscriberType;
 
     private String subscriberId;
@@ -48,6 +50,10 @@ public class UserNavigationData {
     public void setUrlPattern(String urlPattern) {
         this.urlPattern = urlPattern;
     }
+
+    public String getGoal() { return goal; }
+
+    public void setGoal(String goal) { this.goal = goal; }
 
     public String getSubscriberType() {
         return subscriberType;
@@ -104,6 +110,7 @@ public class UserNavigationData {
                 "id='" + id + '\'' +
                 ", username='" + username + '\'' +
                 ", urlPattern='" + urlPattern + '\'' +
+                ", goal='" + goal + '\'' +
                 ", subscriberType='" + subscriberType + '\'' +
                 ", subscriberId='" + subscriberId + '\'' +
                 ", workspaceId='" + workspaceId + '\'' +
