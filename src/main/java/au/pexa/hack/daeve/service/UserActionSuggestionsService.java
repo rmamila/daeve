@@ -90,10 +90,10 @@ public class UserActionSuggestionsService {
     }
 
     protected String getLastAccessedSystem(String url){
-        int start = url.indexOf("/");
-        String second = url.substring(start + 1);
+        int start = url.indexOf("/") +1;
+        String second = url.substring(start);
         int end = second.indexOf("/");
-        return url.substring(start ,end );
+        return url.substring(start ,end +1);
 
     }
 

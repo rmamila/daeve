@@ -20,7 +20,7 @@ public class UserActionSuggestionsServiceTest {
     public void shouldSplitCorrectUrl(){
         String url = "http://localhost:8080/test/anotherPath?someParam=paramValue";
 
-        String val = userActionSuggestionsService.getLastAccessedSystem(url);
+        String val = userActionSuggestionsService.getLastAccessedPage(url);
 
         Assertions.assertThat(val).isEqualTo("anotherPath");
     }
