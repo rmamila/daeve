@@ -104,9 +104,9 @@ public class UserNavigationData {
         this.timestamp = timestamp;
     }
 
-    public UserNavigationData() {
-        this.timestamp = LocalDateTime.now();
-    }
+//    public UserNavigationData() {
+//        this.timestamp = LocalDateTime.now();
+//    }
 
     @Override
     public String toString() {

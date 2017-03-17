@@ -4,13 +4,11 @@ package au.pexa.hack.daeve.service;
 import au.pexa.hack.daeve.model.Suggestion;
 import au.pexa.hack.daeve.model.UserNavigationData;
 import au.pexa.hack.daeve.repositories.UserActionSuggestionsRepository;
+import au.pexa.hack.daeve.util.SuggestNextAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 
 @Component
 public class UserActionSuggestionsService {
@@ -21,16 +19,34 @@ public class UserActionSuggestionsService {
     @Autowired
     private UserNavigationService userNavigationService;
 
+    @Autowired
+    private SuggestNextAction suggestNextAction;
+
     public String saveUserSuggestion(final Suggestion suggestion){
         return userActionSuggestionsRepository.save(suggestion).getId();
     }
 
     public Suggestion getSuggestionsFor(final String username) {
-        Collection<UserNavigationData> userNavigationData = userNavigationService.getUserNavigationBy(username);
-//        Collections.sort(userNavigationData, (navDataOne, navDataTwo) -> navDataOne.getTimestamp().compareTo(navDataTwo.getTimestamp()));
 
+        final Suggestion suggestion = new Suggestion();
+        List<UserNavigationData> userNavigationData = (List<UserNavigationData>) userNavigationService.getUserNavigationBy(username);
+        sortData(userNavigationData);
 
-        return userActionSuggestionsRepository.findByUsername(username);
+        if(!userNavigationData.isEmpty()) {
+            suggestion.setLastAccessedPage(getLastAccessedPage(userNavigationData));
+            suggestion.setLastAccessedSystem(getLastAccessedSystem(userNavigationData));
+            Map<String, Integer> goals = suggestNextAction.getUserGoals(userNavigationData);
+            suggestion.setGoal(goals);
+        }
+        suggestion.setNewUser(userNavigationData.isEmpty());
+
+        return suggestion;
+    }
+
+    protected List<UserNavigationData> sortData(List<UserNavigationData> userNavigationData){
+
+        Collections.sort(userNavigationData, (navDataOne, navDataTwo) -> navDataOne.getTimestamp().compareTo(navDataTwo.getTimestamp()));
+        return userNavigationData;
     }
 
     private boolean isNewUser(Collection<UserNavigationData> userNavigationData ){
@@ -42,12 +58,43 @@ public class UserActionSuggestionsService {
 
     }
 
-    private String getLastAccessedPage(){
+    protected String getLastAccessedPage(List<UserNavigationData> userNavigationData){
+        Optional<UserNavigationData> last = userNavigationData.stream().reduce((f, s) -> s);
+        if(last.isPresent()){
+            final UserNavigationData lastNavigation = last.get();
+            final String urlPattern = lastNavigation.getUrlPattern();
+            return getLastAccessedPage(urlPattern);
+
+        }
         return null;
     }
 
-    private String getLastAccessedSystem(){
+    protected String getLastAccessedSystem(List<UserNavigationData> userNavigationData){
+        Optional<UserNavigationData> last = userNavigationData.stream().reduce((f, s) -> s);
+        if(last.isPresent()){
+            final UserNavigationData lastNavigation = last.get();
+            final String urlPattern = lastNavigation.getUrlPattern();
+            return getLastAccessedSystem(urlPattern);
+
+        }
         return null;
+    }
+
+
+
+    protected String getLastAccessedPage(String url){
+        int start = url.lastIndexOf("/");
+        int end = url.indexOf("?");
+        return url.substring(start+1, (end==0)?url.length():end);
+
+    }
+
+    protected String getLastAccessedSystem(String url){
+        int start = url.indexOf("/");
+        String second = url.substring(start + 1);
+        int end = second.indexOf("/");
+        return url.substring(start ,end );
+
     }
 
 

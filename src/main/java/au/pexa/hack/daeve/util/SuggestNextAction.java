@@ -1,6 +1,7 @@
 package au.pexa.hack.daeve.util;
 
 import au.pexa.hack.daeve.model.UserNavigationData;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.function.Function;
@@ -11,9 +12,10 @@ import java.util.stream.Collectors;
 /**
  * Created by arathnayake on 17/3/17.
  */
+@Component
 public class SuggestNextAction {
 
-    public Map<String, Integer> getUserGoals(ArrayList<UserNavigationData> userActionHistory) {
+    public Map<String, Integer> getUserGoals(List<UserNavigationData> userActionHistory) {
 
         Map<String, Integer> actionSet = new HashMap<>();
 
