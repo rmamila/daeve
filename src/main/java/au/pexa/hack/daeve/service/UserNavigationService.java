@@ -5,6 +5,7 @@ import au.pexa.hack.daeve.repositories.UserNavigationDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Component
@@ -14,6 +15,7 @@ public class UserNavigationService {
     private UserNavigationDataRepository userNavigationDataRepository;
 
     public String save(UserNavigationData userNavigationData){
+        userNavigationData.setTimestamp(LocalDateTime.now());
         return userNavigationDataRepository.save(userNavigationData).getId();
     }
 

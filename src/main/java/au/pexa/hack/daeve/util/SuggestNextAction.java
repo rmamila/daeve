@@ -4,10 +4,6 @@ import au.pexa.hack.daeve.model.UserNavigationData;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.function.Function;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * Created by arathnayake on 17/3/17.
@@ -32,37 +28,11 @@ public class SuggestNextAction {
             }
         }
 
-//        ArrayList<String> in = "asdasdsadsad";
-//        int i = 0;
-//        Pattern p = Pattern.compile("abc");
-//        Matcher m = p.matcher(in);
-//        while(m.find())
-//        {
-//            i++;
-//        }
-//        System.out.println(i);
-
-        // arrayList.sort((p1, p2) -> p1.compareTo(p2));
-
-//        Map<String, Long> counts =
-//                userActionHistory.stream().collect(Collectors.groupingBy(e -> e, Collectors.counting()));
-
-
-
 //        Map<String, Integer> result = userActionHistory.stream().collect(
 //                Collectors.groupingBy(
 //                        UserNavigationData::getGoal, Collectors.counting()
 //                )
 //        );
-
-//        Map<String, Integer> result = userActionHistory.stream().collect(
-//                Collectors.groupingBy(
-//                        UserNavigationData::getGoal, Collectors.counting()
-//                )
-//        );
-
-
-//        item->item.get("firstName")
 
 
         return sortByValue(actionSet);

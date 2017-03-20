@@ -19,10 +19,14 @@ public class UserActionSuggestionsServiceTest {
     @Test
     public void shouldSplitCorrectUrl(){
         String url = "http://localhost:8080/test/anotherPath?someParam=paramValue";
+        String url2 = "/filterdashboard.html";
 
         String val = userActionSuggestionsService.getLastAccessedPage(url);
 
+        String val2 = userActionSuggestionsService.getLastAccessedPage(url2);
+
         Assertions.assertThat(val).isEqualTo("anotherPath");
+        Assertions.assertThat(val2).isEqualTo("filterdashboard.html");
     }
 
     @Test

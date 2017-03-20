@@ -63,6 +63,7 @@ public class UserActionSuggestionsService {
         if(last.isPresent()){
             final UserNavigationData lastNavigation = last.get();
             final String urlPattern = lastNavigation.getUrlPattern();
+            System.out.println("urlPattern = " + urlPattern);
             return getLastAccessedPage(urlPattern);
 
         }
@@ -84,8 +85,8 @@ public class UserActionSuggestionsService {
 
     protected String getLastAccessedPage(String url){
         int start = url.lastIndexOf("/");
-        int end = url.indexOf("?");
-        return url.substring(start+1, (end==0)?url.length():end);
+        int end = url.indexOf("?") != 0 ? url.indexOf("?")  : url.length()-1;
+        return url.substring(start+1, end);
 
     }
 
